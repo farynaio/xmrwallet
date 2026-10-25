@@ -13,6 +13,17 @@ jobs:
         with:
           submodules: recursive   # pulls in external-libs/monero etc.
 
+      - name: Setup monero symlink
+        run: |
+          cd external-libs
+          # Remove the submodule checkout (regular directory)
+          rm -rf monero
+          # Clone the monero fork the project expects
+          git clone --depth 1 --branch release-v0.18.3.4-monerujo \
+            https://github.com/m2049r/monero.git /tmp/monero
+          # Create the symlink the Makefile requires
+          ln -s /tmp/monero monero
+
       # The external-libs/Makefile handles NDK + dependency builds per ABI.
       # It expects Android NDK and build-essential to be present.
       - name: Install build deps
