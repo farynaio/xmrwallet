@@ -20,7 +20,7 @@ jobs:
           rm -rf monero
           # Clone the monero fork the project expects
           git clone --depth 1 --branch release-v0.18.3.4-monerujo \
-            https://github.com/m2049r/monero.git /tmp/monero
+            https://github.com/monero-project/monero.git /tmp/monero
           # Create the symlink the Makefile requires
           ln -s /tmp/monero monero
 
